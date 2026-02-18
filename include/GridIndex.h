@@ -12,6 +12,19 @@ struct GridCell {
 };
 
 class GridIndex {
+ private:
+  // 根据经纬度计算网格单元的索引
+  std::pair<int, int> getCellIndex(double longitude, double latitude) const;
+
+  // 网格范围
+  double minLon, maxLon, minLat, maxLat;
+
+  // 网格单元大小
+  double cellSize;
+
+  // 存储所有网格单元的哈希表
+  std::unordered_map<int, std::unordered_map<int, GridCell>> grid;
+
  public:
   // 构造函数，指定网格的范围和每个单元的大小
   GridIndex(double minLon, double maxLon, double minLat, double maxLat,
@@ -29,19 +42,6 @@ class GridIndex {
   // 范围查询，返回在指定矩形范围内的点
   std::vector<Point> rangeQuery(double minLon, double maxLon, double minLat,
                                 double maxLat) const;
-
- private:
-  // 根据经纬度计算网格单元的索引
-  std::pair<int, int> getCellIndex(double longitude, double latitude) const;
-
-  // 网格范围
-  double minLon, maxLon, minLat, maxLat;
-
-  // 网格单元大小
-  double cellSize;
-
-  // 存储所有网格单元的哈希表
-  std::unordered_map<int, std::unordered_map<int, GridCell>> grid;
 };
 
 #endif  // GRID_INDEX_H

@@ -7,6 +7,10 @@
 #include "Point.h"
 
 class PointManager {
+ private:
+  GridIndex gridIndex;        // 网格索引
+  std::vector<Point> points;  // 存储所有点数据
+
  public:
   // 构造函数，初始化网格索引
   PointManager(double minLon, double maxLon, double minLat, double maxLat,
@@ -30,10 +34,6 @@ class PointManager {
   // 范围查询
   std::vector<Point> rangeQuery(double minLon, double maxLon, double minLat,
                                 double maxLat) const;
-
- private:
-  GridIndex gridIndex;        // 网格索引
-  std::vector<Point> points;  // 存储所有点数据
 };
 
 #endif  // POINT_MANAGER_H

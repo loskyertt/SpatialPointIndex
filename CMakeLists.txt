@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.20.0)
 
 # --- 1. 配置编译器 ---
-# 只在第一次配置时生效；用户手动 -D CMAKE_C_COMPILER=... 仍可覆盖
-if(NOT CMAKE_C_COMPILER)
+# 只在第一次配置时生效，用户手动 -DCMAKE_C_COMPILER=... 和 -DCMAKE_CXX_COMPILER=... 仍可覆盖
+if(NOT CMAKE_C_COMPILER AND NOT CMAKE_CXX_COMPILER)
   if(WIN32)
     # Windows：优先用 VS；没找到就用 MinGW
     find_program(VS_CL cl)
@@ -43,11 +43,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # 统一设置所有目标的输出目录（Windows）
 if(WIN32)
-  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out)
 endif()
 
 # --- 3. 项目模块配置 ---
-project(my_project_name VERSION 0.0.1 LANGUAGES C CXX)
+project(SpatialPointIndex VERSION 0.0.1 LANGUAGES C CXX)
 
 message("\n--------------------------------------------")
 

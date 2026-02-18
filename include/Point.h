@@ -2,6 +2,10 @@
 #define POINT_H
 
 class Point {
+ private:
+  double longitude;  // 经度
+  double latitude;   // 纬度
+
  public:
   // 构造函数
   Point(double longitude, double latitude);
@@ -15,10 +19,6 @@ class Point {
   // 运算符重载，用于比较两个点是否相等
   bool operator==(const Point &other) const;
   bool operator!=(const Point &other) const;
-
- private:
-  double longitude;  // 经度
-  double latitude;   // 纬度
 };
 
 #endif  // POINT_H
